@@ -1,0 +1,58 @@
+<!-- patient/view_appointment_details.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="content container-fluid">
+    <div class="page-header">
+        <div class="row align-items-center">
+            <div class="col">
+                <h3 class="page-title">Appointment Details</h3>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'userhome' %}">Dashboard</a></li>
+                    <li class="breadcrumb-item active">View Appointment</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5>Appointment Number: {{ appointment.appointmentnumber }}</h5>
+                    <p>Patient Name: {{ appointment.patient_id.first_name }} {{ appointment.patient_id.last_name }}</p>
+                    <p>Patient Address: {{ appointment.patient_address }}</p>
+                    <p>Patient Email: {{ appointment.patient_email }}</p>
+                    <p>Patient Contact Number: {{ appointment.patient_contact_number }}</p>
+                    <p>Patient Gender: {{ appointment.patient_gender }}</p>
+                    <p>Date of Appointment: {{ appointment.date_of_appointment }}</p>
+                    <p>Time of Appointment: {{ appointment.time_of_appointment }}</p>
+                    <p>Message: {{ appointment.message }}</p>
+                    <p>Doctor Remark: {{ appointment.doctor_remark }}</p>
+                    <p>Status: {{ appointment.status }}</p>
+
+                    <!-- Display the payment status -->
+                    {% if appointment.is_paid %}
+                        <div class="alert alert-success">
+                            <strong>Payment Status:</strong> Paid
+                        </div>
+                    {% else %}
+                        <div class="alert alert-danger">
+                            <strong>Payment Status:</strong> Not Paid
+                        </div>
+                        <!-- Display the payment link if the appointment is approved -->
+                        {% if appointment.status == "Approved" %}
+                            <div class="alert alert-info">
+                                Your appointment has been approved. <br>
+                                Please <a href="{{ payment_url }}" class="btn btn-primary">Click here to pay the fee</a>.
+                            </div>
+                        {% endif %}
+                    {% endif %}
+
+                    <a href="{% url 'view_appointment_history' %}" class="btn btn-secondary">Back to Appointment History</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

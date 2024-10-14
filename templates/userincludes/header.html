@@ -1,0 +1,74 @@
+{% load static %}
+<header>
+    <link rel="stylesheet" href="{% static 'assets/header.css' %}">
+    <!-- Top Bar -->
+    <div class="header-top-bar py-2 bg-dark text-light">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 col-md-6">
+                    <ul class="top-bar-info list-inline mb-0">
+                        <li class="list-inline-item">
+                            <a href="mailto:support@gmail.com" class="text-light">
+                                <i class="icofont-envelope mr-2"></i>{{page.email}}
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <i class="icofont-location-pin mr-2"></i>{{page.address}}
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-6 col-md-6 text-right">
+                    <div class="top-right-bar">
+                        <a href="tel:+23-345-67890" class="text-light">
+                            <i class="icofont-phone mr-2"></i>
+                            <span class="h6">Call Now: {{page.mobilenumber}}</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'index' %}">
+                <img src="{% static 'assets/img/logo.png' %}" alt="logo" height="60" class="mr-2">
+                <h2 class="d-inline align-middle text-light">Wings Hospital</h2>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarmain" aria-controls="navbarmain" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="icofont-navigation-menu text-light"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarmain">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'index' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">Admin</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'docsignup' %}">Doctor Signup</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">Doctor Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'patreg' %}">Patient Reg</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'doctor' %}">Doctors</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'aboutus' %}">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'contactus' %}">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>

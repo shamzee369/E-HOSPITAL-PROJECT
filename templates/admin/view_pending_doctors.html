@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pending Doctors Approval</title>
+</head>
+<body style="font-family: Arial, sans-serif; margin: 20px;">
+
+    <div style="text-align: center;">
+        <h1 style="color: #333;">Pending Doctors for Approval</h1>
+    </div>
+
+    <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+        <thead>
+            <tr style="background-color: #f2f2f2;">
+                <th style="padding: 10px; border: 1px solid #ccc;">Doctor ID</th>
+                <th style="padding: 10px; border: 1px solid #ccc;">Name</th>
+                <th style="padding: 10px; border: 1px solid #ccc;">Email</th>
+                <th style="padding: 10px; border: 1px solid #ccc;">Mobile Number</th>
+                <th style="padding: 10px; border: 1px solid #ccc;">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for doctor in pending_doctors %}
+            <tr>
+                <td style="padding: 10px; border: 1px solid #ccc;">{{ doctor.id }}</td>
+                <td style="padding: 10px; border: 1px solid #ccc;">{{ doctor.admin.first_name }} {{ doctor.admin.last_name }}</td>
+                <td style="padding: 10px; border: 1px solid #ccc;">{{ doctor.admin.email }}</td>
+                <td style="padding: 10px; border: 1px solid #ccc;">{{ doctor.mobilenumber }}</td>
+                <td style="padding: 10px; border: 1px solid #ccc;">
+                    <a href="{% url 'approve_doctor' doctor.id %}" style="padding: 5px 10px; background-color: #4CAF50; color: white; text-decoration: none; border-radius: 5px;">Approve</a>
+                    <a href="{% url 'reject_doctor' doctor.id %}" style="padding: 5px 10px; background-color: #f44336; color: white; text-decoration: none; border-radius: 5px; margin-left: 5px;">Reject</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5" style="text-align: center; padding: 10px; border: 1px solid #ccc;">No pending doctors.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div style="margin-top: 20px; text-align: center;">
+        <a href="{% url 'admin_home' %}" style="padding: 10px 15px; background-color: #007BFF; color: white; text-decoration: none; border-radius: 5px;">Back to Dashboard</a>
+    </div>
+
+</body>
+</html>

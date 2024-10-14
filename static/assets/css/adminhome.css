@@ -1,0 +1,87 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f2f5; /* Light background for contrast */
+}
+
+.page-header {
+    margin-bottom: 30px;
+}
+
+.page-title {
+    color: #333;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Card Styles */
+.card {
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Background Colors */
+.bg-one {
+    background-color: #4a90e2; /* Blue */
+    color: #fff;
+}
+
+.bg-two {
+    background-color: #e94e77; /* Pink */
+    color: #fff;
+}
+
+/* Widget Styles */
+.db-widgets {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.db-icon {
+    font-size: 40px;
+    flex-shrink: 0;
+    margin-right: 15px;
+}
+
+.db-info {
+    text-align: right;
+}
+
+.db-info h3 {
+    font-size: 32px;
+    margin: 0;
+}
+
+.db-info h6 {
+    margin: 0;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
+    transition: color 0.3s ease;
+}
+
+.db-info h6:hover {
+    color: #fff; /* Highlight on hover */
+}
+
+/* Breadcrumbs */
+.breadcrumb {
+    padding: 0;
+    background: none;
+    list-style: none;
+}
+
+.breadcrumb-item {
+    font-size: 14px;
+    color: #999;
+}
+
+.breadcrumb-item.active {
+    color: #333;
+}

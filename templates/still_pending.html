@@ -1,0 +1,9 @@
+{% extends 'userbase.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>Account Pending Approval</h1>
+    <p>Your account is still pending approval by an administrator. Please wait for confirmation before you can log in.</p>
+    <a href="{% url 'login' %}">Back to Login</a>
+</div>
+{% endblock %}

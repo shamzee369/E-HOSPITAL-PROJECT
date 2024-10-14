@@ -1,0 +1,35 @@
+.card {
+    border-radius: 15px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.db-icon {
+    font-size: 40px;
+    color: #ffffff;
+}
+
+.db-info h3 {
+    font-size: 2rem;
+    margin: 0;
+    font-weight: 700;
+}
+
+.db-info h6 {
+    font-size: 1rem;
+    margin: 0;
+    font-weight: 400;
+}
+
+.text-white {
+    text-decoration: none;
+}
+
+.text-white:hover {
+    text-decoration: underline;
+}

@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% load static %}
+
+
+<div class="content container-fluid">
+   
+    <div class="row">
+       
+       <div class="col-xl-12 col-sm-6 col-12 d-flex">
+          <div class="card bg-two w-100">
+             <div class="card-body">
+                <div class="db-widgets d-flex justify-content-between align-items-center">
+                 
+                   <div class="db-info">
+                      <h3>Welcome {{ user.first_name }} {{ user.last_name }}!!!!</h3>
+
+                      <img src="/{{ user.profile_pic }}">
+
+
+                      <h3>We Here To Assist You</h3>
+
+                      
+
+                      {% for appointment in appointments %}
+                                    <div class="appointment">
+                                       <h4>Appointment with Dr. {{ appointment.doctor_id.name }}</h4>
+                                       <p>Date: {{ appointment.date_of_appointment }}</p>
+                                       <p>Status: {{ appointment.status }}</p>
+                                       {% if appointment.status == "approved" %}
+                                             <a href="{% url 'payment' %}?appointment_id={{ appointment.id }}">Pay Fee</a>
+                                       {% endif %}
+                                    </div>
+                                 {% endfor %}
+
+                                 
+
+                     
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+     
+    </div>
+
+   
+ </div>
+
+
+
+{% endblock %}

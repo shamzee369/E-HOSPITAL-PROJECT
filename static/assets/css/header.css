@@ -1,0 +1,92 @@
+/* Top Bar Styling */
+.header-top-bar {
+    background-color: #343a40;  /* Dark background for the top bar */
+    color: #ffffff;
+    font-size: 14px;
+}
+
+.top-bar-info a {
+    color: #f8f9fa;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.top-bar-info a:hover {
+    color: #adb5bd;  /* Lighter color on hover */
+}
+
+.top-right-bar a {
+    color: #f8f9fa;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.top-right-bar a:hover {
+    color: #adb5bd;
+}
+
+/* Navbar Styling */
+.navbar {
+    background-color: #3076c2;  /* Primary color for the navbar background */
+    padding: 15px 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand img {
+    height: 60px;
+    transition: transform 0.3s ease;
+}
+
+.navbar-brand:hover img {
+    transform: scale(1.1);  /* Logo hover effect */
+}
+
+.navbar-brand h2 {
+    font-size: 28px;
+    font-weight: bold;
+    color: #f8f9fa;
+    margin: 0;
+    display: inline-block;
+}
+
+.navbar-nav .nav-item {
+    margin-left: 20px;
+}
+
+.navbar-nav .nav-link {
+    font-size: 16px;
+    font-weight: 500;
+    color: #ffffff;
+    transition: color 0.3s ease, background-color 0.3s ease;
+    padding: 10px 15px;
+    text-transform: uppercase;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+    color: #adb5bd;  /* Slightly lighter color on hover */
+    background-color: transparent;
+}
+
+.navbar-toggler {
+    border: none;
+    font-size: 24px;
+    color: #ffffff;
+}
+
+.icofont-navigation-menu {
+    color: #ffffff;  /* White icon for the mobile menu */
+}
+
+@media (max-width: 992px) {
+    .navbar-nav .nav-item {
+        margin-left: 0;
+    }
+
+    .navbar-nav .nav-link {
+        padding: 10px;
+        font-size: 14px;
+        text-align: center;
+    }
+}

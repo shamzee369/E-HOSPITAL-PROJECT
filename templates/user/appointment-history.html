@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="content container-fluid">
+    <div class="page-header">
+        <div class="row align-items-center">
+            <div class="col">
+                <h3 class="page-title">Appointments</h3>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'userhome' %}">Dashboard</a></li>
+                    <li class="breadcrumb-item active">View Appointment</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card card-table">
+                <div class="card-body">
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-dismissible fade show" role="alert">
+                                {{ message }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+
+                    {% if vah %}
+                    <div class="table-responsive">
+                        <table class="table table-hover table-center mb-0 datatable">
+                            <thead>
+                                <tr>
+                                    <th>Appointment Number</th>
+                                    <th>Doctor Name</th>
+                                    <th>Consultancy Fee</th>
+                                    <th>Date of Appointment</th>
+                                    <th>Time of Appointment</th>
+                                    <th>Creation Date</th>
+                                    <th>Status</th>
+                                    <th>Payment Status</th> <!-- New Payment Status Column -->
+                                    <th class="text-right">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for appointment in vah %}
+                                <tr>
+                                    <td>{{ appointment.appointmentnumber }}</td>
+                                    <td>{{ appointment.doctor_id.admin.first_name }} {{ appointment.doctor_id.admin.last_name }}</td>
+                                    <td>{{ appointment.doctor_id.fee }}</td>
+                                    <td>{{ appointment.date_of_appointment }}</td>
+                                    <td>{{ appointment.time_of_appointment }}</td>
+                                    <td>{{ appointment.created_at }}</td>
+                                    
+                                    <td>
+                                        {% if appointment.status == '0' %}
+                                            Not Updated Yet
+                                        {% else %}
+                                            {{ appointment.status }}
+                                        {% endif %}
+                                    </td>
+
+                                    <td>
+                                        {% if appointment.is_paid %}
+                                            <span class="text-success">Paid</span>
+                                        {% else %}
+                                            <span class="text-danger">Not Paid</span>
+                                        {% endif %}
+                                    </td>
+
+                                    <td class="text-right">
+                                        <div class="actions">
+                                            {% if appointment.status == 'Approved' and not appointment.is_paid %}
+                                                <!-- Display payment button if appointment is approved and not paid -->
+                                                <form action="{% url 'payment' %}" method="GET">
+                                                    <input type="hidden" name="appointment_id" value="{{ appointment.id }}">
+                                                    <button type="submit" class="btn btn-success">Pay Now</button>
+                                                </form>
+                                            {% elif appointment.status == 'Canceled' %}
+                                                <span class="text-muted">Appointment Canceled</span>
+                                            {% else %}
+                                                <!-- Option to cancel if not approved or canceled yet -->
+                                                <form action="{% url 'cancel_appointment' appointment.id %}" method="POST" style="display:inline;">
+                                                    {% csrf_token %}
+                                                    <button type="submit" class="btn btn-danger">Cancel</button>
+                                                </form>
+                                            {% endif %}
+                                            
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% else %}
+                        <p>No appointment history available.</p>
+                    {% endif %}
+
+                    <!-- Pagination controls -->
+                    <div class="pagination" style="padding-top: 20px;padding-bottom: 20px;text-align: center;">
+                        <span class="step-links">
+                            {% if view_appointment.has_previous %}
+                                <a href="?page=1">&laquo; First</a>
+                                <a href="?page={{ view_appointment.previous_page_number }}">Previous</a>
+                            {% endif %}
+
+                            <span class="current">
+                                Page {{ view_appointment.number }} of {{ view_appointment.paginator.num_pages }}.
+                            </span>
+
+                            {% if view_appointment.has_next %}
+                                <a href="?page={{ view_appointment.next_page_number }}">Next</a>
+                                <a href="?page={{ view_appointment.paginator.num_pages }}">Last &raquo;</a>
+                            {% endif %}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

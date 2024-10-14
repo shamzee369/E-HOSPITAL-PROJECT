@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wings Hospital- Login</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'assets/plugins/bootstrap/css/bootstrap.min.css' %}">
+    
+    <!-- Custom CSS -->
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: url("{% static 'assets/img/login-bg.jpg' %}") repeat-y;
+            background-size: cover;
+        }
+
+        .login-body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-wrapper {
+            background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
+            padding: 40px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .loginbox .login-left {
+            text-align: left;
+            color: #2e3a59;
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+
+        .login-right h1 {
+            font-weight: 600;
+            color: #2e3a59;
+        }
+
+        .account-subtitle {
+            font-size: 14px;
+            color: #9098a9;
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            border: 1px solid #dfe3e8;
+            padding: 10px 15px;
+            font-size: 14px;
+            border-radius: 5px;
+        }
+
+        .btn-primary {
+            background-color: #5b6dcd;
+            border: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #4a5cc5;
+        }
+
+        .btn-block {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .alert {
+            font-size: 14px;
+            margin-top: 15px;
+        }
+
+        .login-right-wrap .home-link {
+            margin-top: 20px;
+            display: block;
+            text-align: center;
+            color: #5b6dcd;
+            font-size: 14px;
+            text-decoration: none;
+        }
+
+        .home-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-body">
+        <div class="login-wrapper">
+            <div class="loginbox">
+                <div class="login-left">
+                    Welcome to Wings Hospital
+                </div>
+                <div class="login-right">
+                    <div class="login-right-wrap">
+                        <h1>Login</h1>
+                        <p class="account-subtitle">Access to our dashboard</p>
+
+                        <!-- Displaying messages -->
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                                    {{ message }}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+
+                        <!-- Login Form -->
+                        <form action="{% url 'doLogin' %}" method="POST">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <input type="email" class="form-control" placeholder="Your Email Address" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" placeholder="Password" name="password" required>
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-primary btn-block" type="submit">Login</button>
+                            </div>
+                        </form>
+
+                        <!-- Home Link -->
+                        <a href="{% url 'index' %}" class="home-link">Go to Home Page</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="{% static 'assets/js/jquery-3.6.0.min.js' %}"></script>
+    <script src="{% static 'assets/js/popper.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+</body>
+</html>

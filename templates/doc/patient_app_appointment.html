@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="content container-fluid">
+    <div class="page-header">
+        <div class="row align-items-center">
+            <div class="col">
+                <h3 class="page-title">Appointments</h3>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'doctor_home' %}">Dashboard</a></li>
+                    <li class="breadcrumb-item active">View Appointment</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card card-table">
+                <div class="card-body">
+                    {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            {{ message }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    {% endfor %}
+                    {% endif %}
+                    
+                    <div class="table-responsive">
+                        <table class="table table-hover table-center mb-0 datatable">
+                            <thead>
+                                <tr>
+                                    <th>Appointment Number</th>
+                                    <th>Patient Name</th>
+                                    <th>Date of Appointment</th>
+                                    <th>Time of Appointment</th>
+                                    <th>Creation Date</th>
+                                    <th>Status</th>
+                                    <th>Payment Status</th>  <!-- New column for payment status -->
+                                    <th class="text-right">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for i in view_appointment %}
+                                <tr>
+                                    <td>{{ i.appointmentnumber }}</td>
+                                    <td>{{ i.pat_id.admin.first_name }} {{ i.pat_id.admin.last_name }}</td>
+                                    <td>{{ i.date_of_appointment }}</td>
+                                    <td>{{ i.time_of_appointment }}</td>
+                                    <td>{{ i.created_at }}</td>
+                                    <td>
+                                        {% if i.status == '0' %}
+                                            Not Updated Yet
+                                        {% else %}
+                                            {{ i.status }}
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if i.is_paid_status %}
+                                            <div class="alert alert-success" role="alert">Paid</div>
+                                        {% else %}
+                                            <div class="alert alert-warning" role="alert">Not Paid</div>
+                                        {% endif %}
+                                    </td>
+                                    <td class="text-right">
+                                        <div class="actions">
+                                            <a href="{% url 'patientappointmentdetails' i.id %}">
+                                                <i class="btn btn-primary btn-block">View</i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% empty %}
+                                    <tr>
+                                        <td colspan="8" class="text-center">No appointments found.</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        
+                        <!-- Pagination controls (if you choose to implement it in the future) -->
+                        <!-- Add your pagination here if needed -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,127 @@
+/* General header styling */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #e9ecef;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+}
+
+.header-left a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.header-left img {
+    margin-right: 15px;
+    display: block;
+    border-radius: 5px;
+}
+
+.header-left strong {
+    font-size: 20px;
+    font-weight: bold;
+    color: #007bff;
+    line-height: 1.2;
+    text-transform: uppercase;
+}
+
+.top-nav-search {
+    flex-grow: 1;
+    text-align: center;
+}
+
+.top-nav-search h4 {
+    font-size: 24px;
+    color: #007bff;
+    margin: 0;
+    font-weight: bold;
+}
+
+/* Mobile button styling */
+.mobile_btn {
+    font-size: 24px;
+    color: #007bff;
+    cursor: pointer;
+    display: none;
+}
+
+/* User menu styling */
+.nav.user-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.nav.user-menu li {
+    position: relative;
+    margin-left: 15px;
+}
+
+.nav.user-menu .user-img img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #007bff;
+}
+
+.nav-item .dropdown-menu {
+    background-color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    border-radius: 6px;
+}
+
+.nav-item .dropdown-menu .user-header {
+    display: flex;
+    align-items: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.nav-item .dropdown-menu .user-header .avatar {
+    margin-right: 10px;
+}
+
+.nav-item .dropdown-menu .user-header .user-text h6 {
+    margin: 0;
+    font-size: 16px;
+    color: #007bff;
+}
+
+.nav-item .dropdown-menu .dropdown-item {
+    color: #333;
+    padding: 8px 12px;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.nav-item .dropdown-menu .dropdown-item:hover {
+    background-color: #f1f1f1;
+}
+
+/* Mobile view styling */
+@media (max-width: 768px) {
+    .mobile_btn {
+        display: block;
+    }
+
+    .top-nav-search {
+        display: none;
+    }
+
+    .header-left img {
+        width: 60px;
+        height: 60px;
+    }
+}
